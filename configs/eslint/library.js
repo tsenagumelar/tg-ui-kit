@@ -13,19 +13,13 @@ const project = resolve(process.cwd(), "tsconfig.json");
 
 module.exports = {
   extends: [
-    "plugin:storybook/recommended",
-    "plugin:mdx/recommended",
-    ...[
-      "@vercel/style-guide/eslint/node",
-      "@vercel/style-guide/eslint/typescript",
-      "@vercel/style-guide/eslint/browser",
-      "@vercel/style-guide/eslint/react",
-    ].map(require.resolve),
-  ],
+    "@vercel/style-guide/eslint/node",
+    "@vercel/style-guide/eslint/typescript",
+  ].map(require.resolve),
   parserOptions: {
     project,
   },
-  plugins: ["only-warn"],
+  plugins: ["typescript-sort-keys", "unused-imports"],
   globals: {
     React: true,
     JSX: true,
@@ -38,8 +32,4 @@ module.exports = {
     },
   },
   ignorePatterns: ["node_modules/", "dist/"],
-  // add rules configurations here
-  rules: {
-    "import/no-default-export": "off",
-  },
 };
